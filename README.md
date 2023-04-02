@@ -1,3 +1,3 @@
 # prvni_projekt
 První repozitář pro první projekt SQL
-Zkouska
+Jsem úplně v háji :D 
