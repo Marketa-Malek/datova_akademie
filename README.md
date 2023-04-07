@@ -1,15 +1,8 @@
 # prvni_projekt
 První repozitář pro první projekt SQL
 
-1. otázka
-  Rostou v průběhu let mzdy ve všech odvětvích, nebo v některých klesají?
-    Co potřebuji vědět?
-      * roky
-      * mzdy
-      * odvětví
 
 --- vytvoření tabulky ----
-
 CREATE TABLE t_marketa_malek_project_SQL_primary_final as
 SELECT
 	cpc.name AS food_category,
@@ -30,7 +23,16 @@ WHERE cpay.value_type_code = 5958
 ;
 
 1. otázka
+  Rostou v průběhu let mzdy ve všech odvětvích, nebo v některých klesají?
+    Co potřebuji vědět?
+      * roky
+      * mzdy
+      * odvětví
+
+
 2. otázka
+
+Kolik je možné si koupit litrů mléka a kilogramů chleba za první a poslední srovnatelné období v dostupných datech cen a mezd?
 
 --- MLÉKO ---
 
