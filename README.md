@@ -21,6 +21,8 @@ WHERE cpay.value_type_code = 5958
 	AND cp.region_code IS NULL
 ;
 
+Následná úprava o další data --> upgrade na 0.2
+
 ---- TABULKA 0.2 ---
 CREATE TABLE t_marketa_malek_project_SQL_primary_final AS
 SELECT
@@ -62,6 +64,7 @@ Odpověď: Rostou.
 2. otázka
 
 Kolik je možné si koupit litrů mléka a kilogramů chleba za první a poslední srovnatelné období v dostupných datech cen a mezd?
+	- tato otázka byla konečně příjemná a snad je správně, protože mi zabrala nejméně času.
 
 --- MLÉKO ---
 
@@ -94,7 +97,7 @@ Sammostatný sloupeček pro počet ks (litrů) na jednotlivé roky.
 3. otázka
 
 Která kategorie potravin zdražuje nejpomaleji (je u ní nejnižší percentuální meziroční nárůst)?
-
+	- nad touhle jsem se trápila asi 3 dny. Nevím zda je dobře, dělala jsem co jse mohla x_x
 SELECT 
 	t1.category_code,
 	t1.food_category,
@@ -110,6 +113,7 @@ GROUP BY t1.category_code, t1.payroll_year
 ;
 
 4. otázka
+	- něco ve stylu otázky číslo 3 :(
 
 Existuje rok, ve kterém byl meziroční nárůst cen potravin výrazně vyšší než růst mezd (větší než 10 %)?
 
