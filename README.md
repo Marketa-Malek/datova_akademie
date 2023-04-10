@@ -1,5 +1,4 @@
-# prvni_projekt
-První repozitář pro první projekt SQL
+# SQL_projekt
 
 
 --- Tabulka 0.1 ----
