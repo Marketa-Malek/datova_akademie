@@ -2,7 +2,7 @@
 První repozitář pro první projekt SQL
 
 
---- vytvoření tabulky ----
+--- Tabulka 0.1 ----
 CREATE TABLE t_marketa_malek_project_SQL_primary_final as
 SELECT
 	cpc.name AS food_category,
@@ -22,7 +22,7 @@ WHERE cpay.value_type_code = 5958
 	AND cp.region_code IS NULL
 ;
 
----- NOVÁ TABULKA ---
+---- TABULKA 0.2 ---
 CREATE TABLE t_marketa_malek_project_SQL_primary_final AS
 SELECT
 	cpc.name AS food_category,
