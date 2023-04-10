@@ -49,6 +49,15 @@ GROUP BY cpay.payroll_year, cp.category_code, cpay.industry_branch_code;
       * roky
       * mzdy
       * odvětví
+      
+SELECT 
+	payroll_year,
+	industry,
+	salary
+FROM t_marketa_malek_project_sql_primary_final tmmpspf 
+GROUP BY industry, payroll_year
+
+Odpověď: Rostou.
 
 
 2. otázka
@@ -67,7 +76,7 @@ FROM t_marketa_malek_project_sql_primary_final tmmpspf
 WHERE category_code = 114201
 GROUP BY payroll_year
 
-Sammostatný sloupeček pro počet ks (litrů) na jednotlivé roky
+Sammostatný sloupeček pro počet ks (litrů) na jednotlivé roky.
 
 --- CHLÉB ---
 
@@ -81,7 +90,51 @@ FROM t_marketa_malek_project_sql_primary_final tmmpspf
 WHERE category_code = 111301
 GROUP BY payroll_year;
 
+Sammostatný sloupeček pro počet ks (litrů) na jednotlivé roky.
 
+3. otázka
 
+Která kategorie potravin zdražuje nejpomaleji (je u ní nejnižší percentuální meziroční nárůst)?
+
+SELECT 
+	t1.category_code,
+	t1.food_category,
+	t1.payroll_year,
+	t1.food_price AS ceny2,
+	t2.food_price AS ceny1,
+	round (avg(t1.food_price),2) AS prumer_ceny,
+	round((t1.food_price-t2.food_price)/t2.food_price *100,2) AS percent_grow
+FROM t_marketa_malek_project_sql_primary_final AS t1
+JOIN  t_marketa_malek_project_sql_primary_final AS t2
+	ON t1.payroll_year = t2.payroll_year + 1
+GROUP BY t1.category_code, t1.payroll_year
+;
+
+4. otázka
+
+Existuje rok, ve kterém byl meziroční nárůst cen potravin výrazně vyšší než růst mezd (větší než 10 %)?
+
+CREATE VIEW v_ctvrta_otazka AS;
+SELECT
+	t1.payroll_year AS year1,
+	t2.payroll_year,
+	round (avg(t1.food_price),2) AS prumer_ceny,
+	round (avg(t1.salary),2) AS prumer_mezd,
+	round ((avg(t1.food_price) - avg(t2.food_price))/avg(t2.food_price)*100,2) AS price_grow,
+	round ((avg(t1.salary)-avg(t2.salary))/ avg(t2.salary)* 100,2) AS salary_grow
+FROM t_marketa_malek_project_sql_primary_final AS t1
+JOIN t_marketa_malek_project_sql_primary_final AS t2
+	ON t1.payroll_year = t2.payroll_year + 1
+GROUP BY t1.payroll_year
+;
+	
+SELECT 
+	payroll_year,
+	price_grow,
+	salary_grow,
+	salary_grow - price_grow AS difference
+FROM v_ctvrta_otazka vco
+ORDER BY difference DESC
+;
 
 
