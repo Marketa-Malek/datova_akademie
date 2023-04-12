@@ -47,9 +47,9 @@ GROUP BY cpay.payroll_year, cp.category_code, cpay.industry_branch_code;
 1. otázka
   Rostou v průběhu let mzdy ve všech odvětvích, nebo v některých klesají?
     Co potřebuji vědět?
-      * roky
-      * mzdy
-      * odvětví
+      - roky
+      - mzdy
+      - odvětví
       
 SELECT 
 	payroll_year,
@@ -64,7 +64,11 @@ Odpověď: Rostou.
 2. otázka
 
 Kolik je možné si koupit litrů mléka a kilogramů chleba za první a poslední srovnatelné období v dostupných datech cen a mezd?
-	- tato otázka byla konečně příjemná a snad je správně, protože mi zabrala nejméně času.
+Co potřebuji vědět?
+	- category_code pro danou potravinu
+	- mzdy
+	- cenu potraviny
+	- vypsané roky
 
 --- MLÉKO ---
 
@@ -72,8 +76,8 @@ SELECT
 	food_category,
 	food_price,
 	payroll_year,
-	value,
-	round (value/food_price,2) AS pocet_ks
+	salary,
+	round (salary/food_price,2) AS pocet_ks
 FROM t_marketa_malek_project_sql_primary_final tmmpspf 
 WHERE category_code = 114201
 GROUP BY payroll_year
@@ -86,18 +90,24 @@ SELECT
 	food_category,
 	food_price,
 	payroll_year,
-	value,
-	round (value/food_price,2) AS pocet_ks
+	salary,
+	round (salary/food_price,2) AS pocet_ks
 FROM t_marketa_malek_project_sql_primary_final tmmpspf 
 WHERE category_code = 111301
 GROUP BY payroll_year;
 
-Sammostatný sloupeček pro počet ks (litrů) na jednotlivé roky.
+Samostatný sloupeček pro počet ks (litrů) na jednotlivé roky. 
+Tato otázka byla konečně příjemná a snad je správně, protože mi zabrala nejméně času. Možná by bylo lepší mít ceny zprůměrované, ale uvidím, zda je i toto správná cesta.
 
 3. otázka
 
 Která kategorie potravin zdražuje nejpomaleji (je u ní nejnižší percentuální meziroční nárůst)?
-	- nad touhle jsem se trápila asi 3 dny. Nevím zda je dobře, dělala jsem co jse mohla x_x
+Co potřebuji vědet?
+	- napojení tabulek pomocí payroll_year pro spočítání meziročního růstu
+	- kategorie potravin
+	- cenu potravin
+	- meziroční nárůst v procentech
+
 SELECT 
 	t1.category_code,
 	t1.food_category,
@@ -112,12 +122,17 @@ JOIN  t_marketa_malek_project_sql_primary_final AS t2
 GROUP BY t1.category_code, t1.payroll_year
 ;
 
+Nad touhle jsem se trápila asi 3 dny. Nevím zda je dobře, dělala jsem, co jsem mohla x_x
+
 4. otázka
-	- něco ve stylu otázky číslo 3 :(
 
 Existuje rok, ve kterém byl meziroční nárůst cen potravin výrazně vyšší než růst mezd (větší než 10 %)?
+Co potřebuji vědět?
+	- meziroční nárůsty mezd v procentech
+	- meziroční nárůsty cen v procentech
+	- rozdíl mezi procentuálními růsty
 
-CREATE VIEW v_ctvrta_otazka AS;
+CREATE VIEW v_ctvrta_otazka AS
 SELECT
 	t1.payroll_year AS year1,
 	t2.payroll_year,
@@ -140,4 +155,37 @@ FROM v_ctvrta_otazka vco
 ORDER BY difference DESC
 ;
 
+Něco ve stylu otázky číslo 3 :(
+
+5. otázka
+
+Má výška HDP vliv na změny ve mzdách a cenách potravin? Neboli, pokud HDP vzroste výrazněji v jednom roce, projeví se to na cenách potravin či mzdách ve stejném nebo násdujícím roce výraznějším růstem?
+
+Zde jsem si napojila tabulku economies pro přidání dat s GDP. Napojení tabulky economies samu na sebe pro meziroční procentuální růst. Využila jsem vytvořeného view z předchozí otázky pro snadnější tvoření příkazu.
+
+SELECT 
+	e.country,
+	e.`year`,
+	e2.`year`,
+	round(e.GDP,0) AS GDP,
+	round(e2.GDP,0) AS GDP2,
+	prumer_ceny,
+	prumer_mezd,
+	round ((e.GDP - e2.GDP)/ e2.GDP * 100,2) AS GDP_grow,
+	price_grow,
+	salary_grow
+FROM economies e
+JOIN v_ctvrta_otazka AS v1
+	ON e.`year` = v1.payroll_year
+JOIN economies e2 
+	ON e.`year` = e2.`year`+1
+WHERE e.country = 'Czech republic'
+	AND e2.country = 'Czech republic'
+	AND e.`year` BETWEEN 2006 AND 2019
+	AND e2.`year` BETWEEN 2006 AND 2019
+GROUP BY e.`year`;
+
+V některých letech měl nárůst GDP projev na mzdy, jinde následují rok na cenu potravin.
+
+Práce na projektu byla jako cesta do Mordoru. Je mi jasné, že prvním odevzdáním cesta nekončí. Ráda si chyby opravím a byla bych ráda za případnou zpětnou vazbu :).
 
