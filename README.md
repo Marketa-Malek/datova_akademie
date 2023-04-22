@@ -58,7 +58,7 @@ SELECT
 FROM t_marketa_malek_project_sql_primary_final AS t1 
 GROUP BY industry, payroll_year;
 
-# **Odpověď**: Nárůst byl od 8 000 Kč a výše. Nejvíce se objevule kolem 10 000 Kč. Objevuje se i vyšší a to přes 23 000 Kč (infor. a kom. činnosti).
+# Odpověď: Nárůst byl od 8 000 Kč a výše. Nejvíce se objevule kolem 10 000 Kč. Objevuje se i vyšší a to přes 23 000 Kč (infor. a kom. činnosti).
 
 
 ## **2. Kolik je možné si koupit litrů mléka a kilogramů chleba za první a poslední srovnatelné období v dostupných datech cen a mezd?**
@@ -97,7 +97,7 @@ WHERE category_code = 111301
 GROUP BY payroll_year;
 
 Samostatný sloupeček pro počet ks na jednotlivé roky. 
-# **Odpověď**: V rozmezí 624 - 1 082 ks.
+# Odpověď: V rozmezí 624 - 1 082 ks.
 Tato otázka byla konečně příjemná a snad je správně, protože mi zabrala nejméně času. Možná by bylo lepší mít ceny zprůměrované, ale uvidím, zda je i toto správná cesta.
 
 ## **3. Která kategorie potravin zdražuje nejpomaleji (je u ní nejnižší percentuální meziroční nárůst)?**
@@ -122,7 +122,7 @@ JOIN  t_marketa_malek_project_sql_primary_final AS t2
 GROUP BY t1.category_code, t1.payroll_year
 ;
 
-# **Odpověď**:
+# Odpověď:
 Nejnižší hodnota procentuálního růstu:
 Jogurt bílý netučný	2009	-84.13
 
@@ -159,7 +159,7 @@ SELECT
 FROM v_fourth_question AS v1
 ORDER BY difference DESC
 
-# **Odpověď**: 
+# Odpověď: 
 Nejvyšší hodnota v roce 2008 je 11,64.
 Nejnižší hodnota je v roce 2012 -8,98.
 	
@@ -191,7 +191,7 @@ WHERE e.country = 'Czech republic'
 	AND e2.`year` BETWEEN 2006 AND 2019
 GROUP BY e.`year`
 
-# **Odpověď** V některých letech měl nárůst GDP projev na mzdy, jinde následují rok na cenu potravin.
+# Odpověď: V některých letech měl nárůst GDP projev na mzdy, jinde následují rok na cenu potravin.
 
 Práce na projektu byla jako cesta do Mordoru. Je mi jasné, že prvním odevzdáním cesta nekončí. Ráda si chyby opravím a byla bych ráda za případnou zpětnou vazbu :).
 
