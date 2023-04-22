@@ -49,7 +49,7 @@ GROUP BY t1.category_code, t1.payroll_year
 
 --- 4. otázka ---
 
-CREATE VIEW v_fourth question AS 
+CREATE VIEW v_fourth_question AS 
 SELECT 
 	t1.payroll_year AS year1, 
 	t2.payroll_year, 
@@ -67,7 +67,7 @@ SELECT
 	price_grow, 
 	salary_grow, 
 	salary_grow - price_grow AS difference 
-FROM v_fourth question AS v1
+FROM v_fourth_question AS v1
 ORDER BY difference DESC
 
 --- 5. otazka ---
@@ -84,7 +84,7 @@ SELECT
 	price_grow,
 	salary_grow
 FROM economies e
-JOIN v_fourth question AS v1
+JOIN v_fourth_question AS v1
 	ON e.`year` = v1.payroll_year
 JOIN economies e2 
 	ON e.`year` = e2.`year`+1
