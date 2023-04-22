@@ -1,7 +1,7 @@
-# SQL_projekt
+### SQL_projekt
 
 
---- **Tabulka 0.1** ----
+# --- **Tabulka 0.1** ----
 CREATE TABLE t_marketa_malek_project_SQL_primary_final as
 SELECT
 	cpc.name AS food_category,
@@ -23,7 +23,7 @@ WHERE cpay.value_type_code = 5958
 
 Následná úprava o další data --> upgrade na 0.2
 
----- **TABULKA 0.2** ---
+# ---- **TABULKA 0.2** ---
 CREATE TABLE t_marketa_malek_project_SQL_primary_final AS
 SELECT
 	cpc.name AS food_category,
@@ -44,7 +44,7 @@ WHERE cpay.value_type_code = 5958
 	AND cp.region_code IS NULL
 GROUP BY cpay.payroll_year, cp.category_code, cpay.industry_branch_code;
 
-**1. otázka**
+## **1. otázka**
   Rostou v průběhu let mzdy ve všech odvětvích, nebo v některých klesají?
     Co potřebuji vědět?
       - roky
@@ -61,7 +61,7 @@ GROUP BY industry, payroll_year;
 **Odpověď**: Nárůst byl od 8 000 Kč a výše. Nejvíce se objevule kolem 10 000 Kč. Objevuje se i vyšší a to přes 23 000 Kč (infor. a kom. činnosti).
 
 
-**2. otázka**
+## **2. otázka**
 
 Kolik je možné si koupit litrů mléka a kilogramů chleba za první a poslední srovnatelné období v dostupných datech cen a mezd?
 Co potřebuji vědět?
@@ -101,7 +101,7 @@ Samostatný sloupeček pro počet ks na jednotlivé roky.
 **Odpověď**: V rozmezí 624 - 1 082 ks.
 Tato otázka byla konečně příjemná a snad je správně, protože mi zabrala nejméně času. Možná by bylo lepší mít ceny zprůměrované, ale uvidím, zda je i toto správná cesta.
 
-**3. otázka**
+## **3. otázka**
 
 Která kategorie potravin zdražuje nejpomaleji (je u ní nejnižší percentuální meziroční nárůst)?
 Co potřebuji vědet?
@@ -133,7 +133,7 @@ Hovězí maso zadní bez kosti	2007	702.5
 
 Nad touhle jsem se trápila asi 3 dny. Nevím zda je dobře, dělala jsem, co jsem mohla x_x
 
-**4. otázka**
+## **4. otázka**
 
 Existuje rok, ve kterém byl meziroční nárůst cen potravin výrazně vyšší než růst mezd (větší než 10 %)?
 Co potřebuji vědět?
@@ -168,7 +168,7 @@ Nejnižší hodnota je v roce 2012 -8,98.
 	
 Něco ve stylu otázky číslo 3 :(
 
-**5. otázka**
+## **5. otázka**
 
 Má výška HDP vliv na změny ve mzdách a cenách potravin? Neboli, pokud HDP vzroste výrazněji v jednom roce, projeví se to na cenách potravin či mzdách ve stejném nebo násdujícím roce výraznějším růstem?
 
