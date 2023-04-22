@@ -1,7 +1,7 @@
 # SQL_projekt
 
 
-# --- **Tabulka 0.1** ----
+# Tabulka 0.1
 CREATE TABLE t_marketa_malek_project_SQL_primary_final as
 SELECT
 	cpc.name AS food_category,
@@ -23,7 +23,7 @@ WHERE cpay.value_type_code = 5958
 
 Následná úprava o další data --> upgrade na 0.2
 
-# ---- **TABULKA 0.2** ---
+# TABULKA 0.2
 CREATE TABLE t_marketa_malek_project_SQL_primary_final AS
 SELECT
 	cpc.name AS food_category,
@@ -122,12 +122,7 @@ JOIN  t_marketa_malek_project_sql_primary_final AS t2
 GROUP BY t1.category_code, t1.payroll_year
 ;
 
-### Odpověď:
-Nejnižší hodnota procentuálního růstu:
-Jogurt bílý netučný	2009	-84.13
-
-Nejvyšší hodnota procentuálního růstu:
-Hovězí maso zadní bez kosti	2007	702.5
+### Odpověď: Nejnižší hodnota procentuálního růstu: Jogurt bílý netučný	2009 -84.13. Nejvyšší hodnota procentuálního růstu: Hovězí maso zadní bez kosti	2007 702.5
 
 Nad touhle jsem se trápila asi 3 dny. Nevím zda je dobře, dělala jsem, co jsem mohla x_x
 
@@ -159,9 +154,7 @@ SELECT
 FROM v_fourth_question AS v1
 ORDER BY difference DESC
 
-### Odpověď: 
-Nejvyšší hodnota v roce 2008 je 11,64.
-Nejnižší hodnota je v roce 2012 -8,98.
+### Odpověď: Nejvyšší hodnota v roce 2008 je 11,64. Nejnižší hodnota je v roce 2012 -8,98.
 	
 Něco ve stylu otázky číslo 3 :(
 
