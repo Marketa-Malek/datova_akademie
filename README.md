@@ -44,9 +44,9 @@ WHERE cpay.value_type_code = 5958
 	AND cp.region_code IS NULL
 GROUP BY cpay.payroll_year, cp.category_code, cpay.industry_branch_code;
 
-## **1. otázka**
-  Rostou v průběhu let mzdy ve všech odvětvích, nebo v některých klesají?
-    Co potřebuji vědět?
+## **1. Rostou v průběhu let mzdy ve všech odvětvích, nebo v některých klesají?**
+  
+   Co potřebuji vědět?
       - roky
       - mzdy
       - odvětví
@@ -58,19 +58,18 @@ SELECT
 FROM t_marketa_malek_project_sql_primary_final AS t1 
 GROUP BY industry, payroll_year;
 
-**Odpověď**: Nárůst byl od 8 000 Kč a výše. Nejvíce se objevule kolem 10 000 Kč. Objevuje se i vyšší a to přes 23 000 Kč (infor. a kom. činnosti).
+# **Odpověď**: Nárůst byl od 8 000 Kč a výše. Nejvíce se objevule kolem 10 000 Kč. Objevuje se i vyšší a to přes 23 000 Kč (infor. a kom. činnosti).
 
 
-## **2. otázka**
+## **2. Kolik je možné si koupit litrů mléka a kilogramů chleba za první a poslední srovnatelné období v dostupných datech cen a mezd?**
 
-Kolik je možné si koupit litrů mléka a kilogramů chleba za první a poslední srovnatelné období v dostupných datech cen a mezd?
 Co potřebuji vědět?
 	- category_code pro danou potravinu
 	- mzdy
 	- cenu potraviny
 	- vypsané roky
 
---- MLÉKO ---
+# MLÉKO
 
 SELECT
 	food_category,
@@ -83,9 +82,9 @@ WHERE category_code = 114201
 GROUP BY payroll_year;
 
 Sammostatný sloupeček pro počet ks (litrů) na jednotlivé roky. 
-**Odpověď**: V rozmezí 809 - 1 358 l.
+# **Odpověď**: V rozmezí 809 - 1 358 l.
 
---- CHLÉB ---
+# CHLÉB
 
 SELECT
 	food_category,
@@ -98,12 +97,11 @@ WHERE category_code = 111301
 GROUP BY payroll_year;
 
 Samostatný sloupeček pro počet ks na jednotlivé roky. 
-**Odpověď**: V rozmezí 624 - 1 082 ks.
+# **Odpověď**: V rozmezí 624 - 1 082 ks.
 Tato otázka byla konečně příjemná a snad je správně, protože mi zabrala nejméně času. Možná by bylo lepší mít ceny zprůměrované, ale uvidím, zda je i toto správná cesta.
 
-## **3. otázka**
+## **3. Která kategorie potravin zdražuje nejpomaleji (je u ní nejnižší percentuální meziroční nárůst)?**
 
-Která kategorie potravin zdražuje nejpomaleji (je u ní nejnižší percentuální meziroční nárůst)?
 Co potřebuji vědet?
 	- napojení tabulek pomocí payroll_year pro spočítání meziročního růstu
 	- kategorie potravin
@@ -124,7 +122,7 @@ JOIN  t_marketa_malek_project_sql_primary_final AS t2
 GROUP BY t1.category_code, t1.payroll_year
 ;
 
-**Odpověď**:
+# **Odpověď**:
 Nejnižší hodnota procentuálního růstu:
 Jogurt bílý netučný	2009	-84.13
 
@@ -133,9 +131,8 @@ Hovězí maso zadní bez kosti	2007	702.5
 
 Nad touhle jsem se trápila asi 3 dny. Nevím zda je dobře, dělala jsem, co jsem mohla x_x
 
-## **4. otázka**
+## **4. Existuje rok, ve kterém byl meziroční nárůst cen potravin výrazně vyšší než růst mezd (větší než 10 %)?**
 
-Existuje rok, ve kterém byl meziroční nárůst cen potravin výrazně vyšší než růst mezd (větší než 10 %)?
 Co potřebuji vědět?
 	- meziroční nárůsty mezd v procentech
 	- meziroční nárůsty cen v procentech
@@ -162,15 +159,13 @@ SELECT
 FROM v_fourth_question AS v1
 ORDER BY difference DESC
 
-**Odpověď**: 
+# **Odpověď**: 
 Nejvyšší hodnota v roce 2008 je 11,64.
 Nejnižší hodnota je v roce 2012 -8,98.
 	
 Něco ve stylu otázky číslo 3 :(
 
-## **5. otázka**
-
-Má výška HDP vliv na změny ve mzdách a cenách potravin? Neboli, pokud HDP vzroste výrazněji v jednom roce, projeví se to na cenách potravin či mzdách ve stejném nebo násdujícím roce výraznějším růstem?
+## **5. Má výška HDP vliv na změny ve mzdách a cenách potravin? Neboli, pokud HDP vzroste výrazněji v jednom roce, projeví se to na cenách potravin či mzdách ve stejném nebo násdujícím roce výraznějším růstem?**
 
 Zde jsem si napojila tabulku economies pro přidání dat s GDP. Napojení tabulky economies samu na sebe pro meziroční procentuální růst. Využila jsem vytvořeného view z předchozí otázky pro snadnější tvoření příkazu.
 
@@ -196,7 +191,7 @@ WHERE e.country = 'Czech republic'
 	AND e2.`year` BETWEEN 2006 AND 2019
 GROUP BY e.`year`
 
-**Odpověď** V některých letech měl nárůst GDP projev na mzdy, jinde následují rok na cenu potravin.
+# **Odpověď** V některých letech měl nárůst GDP projev na mzdy, jinde následují rok na cenu potravin.
 
 Práce na projektu byla jako cesta do Mordoru. Je mi jasné, že prvním odevzdáním cesta nekončí. Ráda si chyby opravím a byla bych ráda za případnou zpětnou vazbu :).
 
