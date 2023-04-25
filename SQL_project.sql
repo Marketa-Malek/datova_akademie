@@ -37,8 +37,8 @@ SELECT
 	t1.category_code,
 	t1.food_category,
 	t1.payroll_year,
-	t1.food_price AS ceny2,
-	t2.food_price AS ceny1,
+	t1.food_price AS price2,
+	t2.food_price AS price1,
 	round (avg(t1.food_price),2) AS average_price,
 	round((t1.food_price-t2.food_price)/t2.food_price *100,2) AS percent_grow
 FROM t_marketa_malek_project_sql_primary_final AS t1
@@ -55,8 +55,8 @@ SELECT
 	t2.payroll_year, 
 	round (avg(t1.food_price),2) AS average_price, 
 	round (avg(t1.salary),2) AS average_salary,
-	round ((avg(t1.food_price) - avg(t2.food_price))/avg(t2.food_price)100,2) AS price_grow,
-	round ((avg(t1.salary)-avg(t2.salary))/ avg(t2.salary) 100,2) AS salary_grow 
+	round ((avg(t1.food_price) - avg(t2.food_price))/avg(t2.food_price)*100,2) AS price_grow,
+	round ((avg(t1.salary)-avg(t2.salary))/ avg(t2.salary)*100,2) AS salary_grow 
 FROM t_marketa_malek_project_sql_primary_final AS t1 
 JOIN t_marketa_malek_project_sql_primary_final AS t2 
 	ON t1.payroll_year = t2.payroll_year + 1 
