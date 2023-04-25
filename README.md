@@ -56,7 +56,8 @@ GROUP BY cpay.payroll_year, cp.category_code, cpay.industry_branch_code;
       - mzdy
       - odvětví
       
-```SELECT 
+```
+SELECT 
 	payroll_year,
 	industry,
 	salary
@@ -76,7 +77,7 @@ Co potřebuji vědět?
 	- vypsané roky
 
 ## MLÉKO
-
+```
 SELECT
 	food_category,
 	food_price,
@@ -86,12 +87,14 @@ SELECT
 FROM t_marketa_malek_project_sql_primary_final AS t1 
 WHERE category_code = 114201
 GROUP BY payroll_year;
+```
 
 Sammostatný sloupeček pro počet ks (litrů) na jednotlivé roky. 
 ### **Odpověď**: V rozmezí 809 - 1 358 l.
 
 ## CHLÉB
 
+```
 SELECT
 	food_category,
 	food_price,
@@ -101,6 +104,7 @@ SELECT
 FROM t_marketa_malek_project_sql_primary_final AS t1 
 WHERE category_code = 111301
 GROUP BY payroll_year;
+```
 
 Samostatný sloupeček pro počet ks na jednotlivé roky. 
 ### Odpověď: V rozmezí 624 - 1 082 ks.
@@ -113,7 +117,7 @@ Co potřebuji vědet?
 	- kategorie potravin
 	- cenu potravin
 	- meziroční nárůst v procentech
-
+```
 SELECT 
 	t1.category_code,
 	t1.food_category,
@@ -125,8 +129,8 @@ SELECT
 FROM t_marketa_malek_project_sql_primary_final AS t1
 JOIN  t_marketa_malek_project_sql_primary_final AS t2
 	ON t1.payroll_year = t2.payroll_year + 1
-GROUP BY t1.category_code, t1.payroll_year
-;
+GROUP BY t1.category_code, t1.payroll_year;
+```
 
 ### Odpověď: Nejnižší hodnota procentuálního růstu: Jogurt bílý netučný	2009 -84.13. Nejvyšší hodnota procentuálního růstu: Hovězí maso zadní bez kosti	2007 702.5
 
@@ -139,6 +143,7 @@ Co potřebuji vědět?
 	- meziroční nárůsty cen v procentech
 	- rozdíl mezi procentuálními růsty
 
+```
 CREATE VIEW v_fourth_question AS 
 SELECT
 	t1.payroll_year AS year1, 
@@ -159,6 +164,7 @@ SELECT
 	salary_grow - price_grow AS difference 
 FROM v_fourth_question AS v1
 ORDER BY difference DESC
+```
 
 ### Odpověď: Nejvyšší hodnota v roce 2008 je 11,64. Nejnižší hodnota je v roce 2012 -8,98.
 	
@@ -168,6 +174,7 @@ Něco ve stylu otázky číslo 3 :(
 
 Zde jsem si napojila tabulku economies pro přidání dat s GDP. Napojení tabulky economies samu na sebe pro meziroční procentuální růst. Využila jsem vytvořeného view z předchozí otázky pro snadnější tvoření příkazu.
 
+```
 SELECT 
 	e.country,
 	e.`year`,
@@ -189,6 +196,7 @@ WHERE e.country = 'Czech republic'
 	AND e.`year` BETWEEN 2006 AND 2019
 	AND e2.`year` BETWEEN 2006 AND 2019
 GROUP BY e.`year`
+```
 
 ### Odpověď: V některých letech měl nárůst GDP projev na mzdy, jinde následují rok na cenu potravin.
 
