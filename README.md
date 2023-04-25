@@ -4,7 +4,8 @@
 # Tabulka 0.1
 CREATE TABLE t_marketa_malek_project_SQL_primary_final as
 
-```SELECT
+```
+SELECT
 	cpc.name AS food_category,
 	cp.value AS food_price,
 	cpib.name,
@@ -19,15 +20,16 @@ LEFT JOIN czechia_payroll_industry_branch cpib
 JOIN czechia_price_category cpc 
 	ON cp.category_code = cpc.code 
 WHERE cpay.value_type_code = 5958
-	AND cp.region_code IS NULL
-;```
+	AND cp.region_code IS NULL;
+```
 
 Následná úprava o další data --> upgrade na 0.2
 
 # TABULKA 0.2
 CREATE TABLE t_marketa_malek_project_SQL_primary_final AS
 
-```SELECT
+```
+SELECT
 	cpc.name AS food_category,
 	cp.value AS food_price,
 	cpib.name AS industry,
