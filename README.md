@@ -75,40 +75,17 @@ Co potřebuji vědět?
 	- mzdy
 	- cenu potraviny
 	- vypsané roky
-
-## MLÉKO
 ```
 SELECT
 	food_category,
 	food_price,
 	payroll_year,
 	salary,
-	round (salary/food_price,2) AS quantity
+	round (AVG(salary)/AVG(food_price),0) AS quantity
 FROM t_marketa_malek_project_sql_primary_final AS t1 
-WHERE category_code = 114201
-GROUP BY payroll_year;
+WHERE category_code IN (114201, 111301) 
+GROUP BY category_code, payroll_year;
 ```
-
-Sammostatný sloupeček pro počet ks (litrů) na jednotlivé roky. 
-### **Odpověď**: V rozmezí 809 - 1 358 l.
-
-## CHLÉB
-
-```
-SELECT
-	food_category,
-	food_price,
-	payroll_year,
-	salary,
-	round (salary/food_price,2) AS quantity
-FROM t_marketa_malek_project_sql_primary_final AS t1 
-WHERE category_code = 111301
-GROUP BY payroll_year;
-```
-
-Samostatný sloupeček pro počet ks na jednotlivé roky. 
-### Odpověď: V rozmezí 624 - 1 082 ks.
-Tato otázka byla konečně příjemná a snad je správně, protože mi zabrala nejméně času. Možná by bylo lepší mít ceny zprůměrované, ale uvidím, zda je i toto správná cesta.
 
 # **3. Která kategorie potravin zdražuje nejpomaleji (je u ní nejnižší percentuální meziroční nárůst)?**
 
