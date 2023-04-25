@@ -3,7 +3,8 @@
 
 # Tabulka 0.1
 CREATE TABLE t_marketa_malek_project_SQL_primary_final as
-SELECT
+
+```SELECT
 	cpc.name AS food_category,
 	cp.value AS food_price,
 	cpib.name,
@@ -19,13 +20,14 @@ JOIN czechia_price_category cpc
 	ON cp.category_code = cpc.code 
 WHERE cpay.value_type_code = 5958
 	AND cp.region_code IS NULL
-;
+;```
 
 Následná úprava o další data --> upgrade na 0.2
 
 # TABULKA 0.2
 CREATE TABLE t_marketa_malek_project_SQL_primary_final AS
-SELECT
+
+```SELECT
 	cpc.name AS food_category,
 	cp.value AS food_price,
 	cpib.name AS industry,
@@ -43,6 +45,7 @@ JOIN czechia_price_category cpc
 WHERE cpay.value_type_code = 5958
 	AND cp.region_code IS NULL
 GROUP BY cpay.payroll_year, cp.category_code, cpay.industry_branch_code;
+```
 
 # **1. Rostou v průběhu let mzdy ve všech odvětvích, nebo v některých klesají?**
   
@@ -51,12 +54,13 @@ GROUP BY cpay.payroll_year, cp.category_code, cpay.industry_branch_code;
       - mzdy
       - odvětví
       
-SELECT 
+```SELECT 
 	payroll_year,
 	industry,
 	salary
 FROM t_marketa_malek_project_sql_primary_final AS t1 
 GROUP BY industry, payroll_year;
+```
 
 ### Odpověď: Nárůst byl od 8 000 Kč a výše. Nejvíce se objevule kolem 10 000 Kč. Objevuje se i vyšší a to přes 23 000 Kč (infor. a kom. činnosti).
 
