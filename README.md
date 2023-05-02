@@ -89,7 +89,7 @@ GROUP BY industry;
 ```
 
 **Odpověď:** 
-- Nejnižší nárůst byl v kategorii: Ubytování, stravování a pohostinství - 7 928 Kč. 
+- Nejnižší nárůst byl v kategorii: Ubytování, stravování a pohostinství, a to 7 928 Kč. 
 - Do 10 000 Kč byl nárůst v administrativě, peněžnictví a pojišťovnictví, ostatních činnostech a v oblasti nemovitostí. 
 - Nejvyšší nárůst byl v informační a komunikační činnosti s 23 739 Kč. Zbylá odvětví měla nárůst od 10 000 do 16 876 Kč. 
 
