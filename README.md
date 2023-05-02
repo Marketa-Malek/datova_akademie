@@ -57,15 +57,38 @@ GROUP BY cpay.payroll_year, cp.category_code, cpay.industry_branch_code;
       - odvětví
       
 ```
+CREATE OR REPLACE VIEW v_first_question AS
+SELECT
+	t1.payroll_year,
+	t1.industry,
+	t1.salary,
+	t2.salary AS salary_previous,
+	t1.salary - t2.salary AS diference
+FROM (
+	SELECT 
+		payroll_year,
+		industry,
+		ROUND (AVG(salary),0) AS salary
+	FROM t_marketa_malek_project_sql_primary_final AS t1 
+	GROUP BY industry, payroll_year) AS t1 
+LEFT JOIN (SELECT 
+		payroll_year,
+		industry,
+		ROUND (AVG(salary),0) AS salary
+	FROM t_marketa_malek_project_sql_primary_final 
+	GROUP BY industry, payroll_year) AS t2
+	ON t1.payroll_year = t2.payroll_year + 1
+	AND t1.industry = t2.industry
+GROUP BY industry, payroll_year
+
 SELECT 
-	payroll_year,
 	industry,
-	salary
-FROM t_marketa_malek_project_sql_primary_final AS t1 
-GROUP BY industry, payroll_year;
+	round(SUM(diference), 0) AS total_salary_growth
+FROM v_first_question AS v1
+GROUP BY industry;
 ```
 
-### Odpověď: Nárůst byl od 8 000 Kč a výše. Nejvíce se objevule kolem 10 000 Kč. Objevuje se i vyšší a to přes 23 000 Kč (infor. a kom. činnosti).
+### Odpověď: Nejnižší nárůst byl v kategorii: Ubytování, stravování a pohostinství - 7 928 Kč. Do 10 000 Kč byl nárůst v administrativě, peněžnictví a pojišťovnictví, ostatních činnostech a v oblasti nemovitostí. Nejvyšší nárůst byl v informační a komunikační činnosti s 23 739 Kč. Zbylá odvětví měla nárůst od 10 000 do 16 876 Kč. 
 
 
 # **2. Kolik je možné si koupit litrů mléka a kilogramů chleba za první a poslední srovnatelné období v dostupných datech cen a mezd?**
