@@ -89,10 +89,9 @@ GROUP BY industry;
 ```
 
 **Odpověď: 
-Nejnižší nárůst byl v kategorii: Ubytování, stravování a pohostinství - 7 928 Kč. 
-Do 10 000 Kč byl nárůst v administrativě, peněžnictví a pojišťovnictví, ostatních činnostech a v oblasti nemovitostí. 
-Nejvyšší nárůst byl v informační a komunikační činnosti s 23 739 Kč. Zbylá odvětví měla nárůst od 10 000 do 16 876 Kč.
-** 
+- Nejnižší nárůst byl v kategorii: Ubytování, stravování a pohostinství - 7 928 Kč. 
+- Do 10 000 Kč byl nárůst v administrativě, peněžnictví a pojišťovnictví, ostatních činnostech a v oblasti nemovitostí. 
+- Nejvyšší nárůst byl v informační a komunikační činnosti s 23 739 Kč. Zbylá odvětví měla nárůst od 10 000 do 16 876 Kč. 
 
 
 # **2. Kolik je možné si koupit litrů mléka a kilogramů chleba za první a poslední srovnatelné období v dostupných datech cen a mezd?**
@@ -115,9 +114,9 @@ GROUP BY category_code, payroll_year;
 ```
 
 **Odpověď: 
-V prvním měřitelném roce (2006) bylo možné zakoupit 1 112 ks chleba a 1 340 l mléka. 
-Následující rok cena chleba vzrostla výrazněji, než u mléka. Z tohoto důvodu bylo možné zakoupit o 173 ks pečiva méně, než předchozí rok. Počet litrů mléka klesl o 124. 
-V průběhu let se počet kusů potravin zvyšoval i snižoval dle toho, jak se navyšovaly mzdy a ceny potravin. Jelikož cena mléka byla vždy nižší, bylo vždy možné zakoupit více litrů mléka, než kusů chleba.**
+- V prvním měřitelném roce (2006) bylo možné zakoupit 1 112 ks chleba a 1 340 l mléka. 
+- Následující rok cena chleba vzrostla výrazněji, než u mléka. Z tohoto důvodu bylo možné zakoupit o 173 ks pečiva méně, než předchozí rok. Počet litrů mléka klesl o 124. 
+- V průběhu let se počet kusů potravin zvyšoval i snižoval dle toho, jak se navyšovaly mzdy a ceny potravin. Jelikož cena mléka byla vždy nižší, bylo vždy možné zakoupit více litrů mléka, než kusů chleba.
 
 # **3. Která kategorie potravin zdražuje nejpomaleji (je u ní nejnižší percentuální meziroční nárůst)?**
 
@@ -151,13 +150,14 @@ GROUP BY category_code
 ORDER BY average_percent_growth;
 ```
 
-**Odpověď: V záporných hodnotách má nevyšší číslo ( - 77) jogurt bílý netučný. 
-Nad -50% se nachází také minerální voda, pivo, mouka hladká pšeničná a mrkev. 
-Do -50% zde máme mléko, cukr krystal. chléb, banány, vejce slepičí a jablka. 
-V plusových hodnotách do 50% máme pomeranče, rýži, těstoviny s rajčaty a pečivo pšeničné bílé. 
-Nad 50% a do 100% růstu jsou papriky a kuřecí maso. 
-Nad 100% se nachází bílé víno, kapr živý a rostlinný tuk. 
-Nad 200% je to vepřová pečeně, šunkový salám, eidam sýr, máslo a s nejvyšším nárůstem 497% hovězí maso zadní bez kosti.**
+**Odpověď: 
+- V záporných hodnotách má nevyšší číslo ( - 77) jogurt bílý netučný. 
+- Nad -50% se nachází také minerální voda, pivo, mouka hladká pšeničná a mrkev. 
+- Do -50% zde máme mléko, cukr krystal. chléb, banány, vejce slepičí a jablka. 
+- V plusových hodnotách do 50% máme pomeranče, rýži, těstoviny s rajčaty a pečivo pšeničné bílé. 
+- Nad 50% a do 100% růstu jsou papriky a kuřecí maso. 
+- Nad 100% se nachází bílé víno, kapr živý a rostlinný tuk. 
+- Nad 200% je to vepřová pečeně, šunkový salám, eidam sýr, máslo a s nejvyšším nárůstem 497% hovězí maso zadní bez kosti.**
 
 
 
@@ -191,7 +191,9 @@ FROM v_fourth_question AS v1
 ORDER BY difference DESC
 ```
 
-**Odpověď: Nejvyšší hodnota v roce 2008 je 11,64. Nejnižší hodnota je v roce 2012 -8,98.**
+**Odpověď: 
+- Nejvyšší hodnota v roce 2008 je 11,64. 
+- Nejnižší hodnota je v roce 2012 -8,98.
 	
 
 
@@ -223,4 +225,5 @@ WHERE e.country = 'Czech republic'
 GROUP BY e.`year`
 ```
 
-**Odpověď: V některých letech měl nárůst GDP projev na mzdy, jinde následují rok na cenu potravin.**
+**Odpověď: 
+- V některých letech měl nárůst GDP projev na mzdy, jinde následují rok na cenu potravin.
