@@ -103,6 +103,7 @@ Co potřebuji vědět?
 	- vypsané roky
 ```
 SELECT
+	category_code,
 	food_category,
 	food_price,
 	payroll_year,
@@ -192,8 +193,7 @@ ORDER BY difference DESC
 ```
 
 **Odpověď:**
-- Nejvyšší hodnota v roce 2008 je 11,64. 
-- Nejnižší hodnota je v roce 2012 -8,98.
+- Ano, v roce 2007 a 2008 byl rozdíl v nárustu cen a mezd nad 10%.
 	
 
 
@@ -226,4 +226,9 @@ GROUP BY e.`year`
 ```
 
 **Odpověď:**
-- V některých letech měl nárůst GDP projev na mzdy, jinde následují rok na cenu potravin.
+- Na začátku sledovaného období měl GDP nárůst hodnotu 5.57. Mzdy měly hodnotu 10.48 a potraviny 0.28.
+- Následující rok GDP kleslo a s ním i mzdy. Do mínusových hodnot šly cen potravin. 
+- Hodnota GDP klesla v roce 2009. Ceny vzrostly zatímco mzdy zůstaly na podobné hodnotě.
+- Od roku 2013 do 2015 GDP výrazně vzrostlo ( z -0.05 na 5.39). Zareagovaly ceny potravin, ale více mzdy a to výrazným nárůstem (na 7,33). 
+- nárůst cen potravin se projevil až v následujícím roce s hodnotou 8.44
+- na konci sledovaného období mělo GDP hodnotu 5.17 -- ceny klesly do mínusu a mzdy se snížily na 5.08
