@@ -110,6 +110,8 @@ WHERE category_code IN (114201, 111301)
 GROUP BY category_code, payroll_year;
 ```
 
+### Odpověď: V prvním měřitelném roce (2006) bylo možné zakoupit 1 112 ks chleba a 1 340 l mléka. Následující rok cena chleba vzrostla výrazněji, než u mléka. Z tohoto důvodu bylo možné zakoupit o 173 ks pečiva méně, než předchozí rok. Počet litrů mléka klesl o 124. V průběhu let se počet kusů potravin zvyšoval i snižoval dle toho, jak se navyšovaly mzdy a ceny potravin. Jelikož cena mléka byla vždy nižší, bylo vždy možné zakoupit více litrů mléka, než kusů chleba.
+
 # **3. Která kategorie potravin zdražuje nejpomaleji (je u ní nejnižší percentuální meziroční nárůst)?**
 
 Co potřebuji vědet?
@@ -118,25 +120,35 @@ Co potřebuji vědet?
 	- cenu potravin
 	- meziroční nárůst v procentech
 ```
+CREATE VIEW v_third_question AS 
 SELECT 
 	t1.category_code,
 	t1.food_category,
 	t1.payroll_year,
-	t1.food_price AS ceny2,
-	t2.food_price AS ceny1,
-	round (avg(t1.food_price),2) AS average_price,
-	round((t1.food_price-t2.food_price)/t2.food_price *100,2) AS percent_grow
+	t1.food_price AS price2,
+	t2.food_price AS price1,
+	round(avg(t1.food_price),2) AS average_price,
+	round((t1.food_price - t2.food_price)/t2.food_price * 100,2) AS percent_growth
 FROM t_marketa_malek_project_sql_primary_final AS t1
 JOIN  t_marketa_malek_project_sql_primary_final AS t2
 	ON t1.payroll_year = t2.payroll_year + 1
-GROUP BY t1.category_code, t1.payroll_year;
+GROUP BY t1.category_code, t1.payroll_year
+;
+
+SELECT 
+	category_code,
+	food_category,
+	ROUND(AVG(percent_growth),0) AS average_percent_growth
+FROM v_third_question AS v1
+GROUP BY category_code
+ORDER BY average_percent_growth;
 ```
 
-### Odpověď: Nejnižší hodnota procentuálního růstu: Jogurt bílý netučný	2009 -84.13. Nejvyšší hodnota procentuálního růstu: Hovězí maso zadní bez kosti	2007 702.5
+### Odpověď: V záporných hodnotách má nevyšší číslo ( - 77) jogurt bílý netučný. Nad -50% se nachází také minerální voda, pivo, mouka hladká pšeničná a mrkev. Do -50% zde máme mléko, cukr krystal. chléb, banány, vejce slepičí a jablka. V plusových hodnotách do 50% máme pomeranče, rýži, těstoviny s rajčaty a pečivo pšeničné bílé. Nad 50% a do 100% růstu jsou papriky a kuřecí maso. Nad 100% se nachází bílé víno, kapr živý a rostlinný tuk. Nad 200% je to vepřová pečeně, šunkový salám, eidam sýr, máslo a s nejvyšším nárůstem 497% hovězí maso zadní bez kosti.
 
 Nad touhle jsem se trápila asi 3 dny. Nevím zda je dobře, dělala jsem, co jsem mohla x_x
 
-# **4. Existuje rok, ve kterém byl meziroční nárůst cen potravin výrazně vyšší než růst mezd (větší než 10 %)?**
+# **4. Existuje rok, ve kterém byl meziroční nárůst cen potravin výrazně vyšší, než růst mezd (větší než 10 %)?**
 
 Co potřebuji vědět?
 	- meziroční nárůsty mezd v procentech
