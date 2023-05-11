@@ -1,31 +1,9 @@
 # SQL_projekt
 
 
-# Tabulka 0.1
-CREATE TABLE t_marketa_malek_project_SQL_primary_final as
 
-```
-SELECT
-	cpc.name AS food_category,
-	cp.value AS food_price,
-	cpib.name,
-	cpay.value,
-	cp.category_code,
-	cpay.payroll_year
-FROM czechia_price cp 
-JOIN czechia_payroll cpay 
-	ON cpay.payroll_year = YEAR (cp.date_from)
-LEFT JOIN czechia_payroll_industry_branch cpib 
-	ON cpay.industry_branch_code = cpib.code 
-JOIN czechia_price_category cpc 
-	ON cp.category_code = cpc.code 
-WHERE cpay.value_type_code = 5958
-	AND cp.region_code IS NULL;
-```
 
-Následná úprava o další data --> upgrade na 0.2
-
-# TABULKA 0.2
+# TABULKA 
 CREATE TABLE t_marketa_malek_project_SQL_primary_final AS
 
 ```
@@ -116,8 +94,7 @@ GROUP BY category_code, payroll_year;
 
 **Odpověď:**
 - V prvním měřitelném roce (2006) bylo možné zakoupit 1 112 ks chleba a 1 340 l mléka. 
-- Následující rok cena chleba vzrostla výrazněji, než u mléka. Z tohoto důvodu bylo možné zakoupit o 173 ks pečiva méně, než předchozí rok. Počet litrů mléka klesl o 124. 
-- V průběhu let se počet kusů potravin zvyšoval i snižoval dle toho, jak se navyšovaly mzdy a ceny potravin. Jelikož cena mléka byla vždy nižší, bylo vždy možné zakoupit více litrů mléka, než kusů chleba.
+- Na konci měřitelného období bylo možné zakoupit  1 273 ks chleba a 1 551 l mléka.
 
 # **3. Která kategorie potravin zdražuje nejpomaleji (je u ní nejnižší percentuální meziroční nárůst)?**
 
