@@ -1,31 +1,15 @@
 # SQL_projekt
 
+V tomto projektu se zabýváme otázkami růstu cen potravin a mezd. Pracujeme s daty z české republiky, které nám nabízí ceny potravin, jejich kategorie a množství. Data mzdová obsahují informace o mzdách a jednotlivých odvětví. Obě tabulky informace sbíraly v určitých časových obdobích.
 
+Jako první bylo nutné vytvořit novou tabulku, která obsahuje pouze ty data, která opravdu potřebujeme. Zárověň jsme využili omezující podmínky, jako např. value type code, či hodnoty kterou jsou NULL. Pro finální tabulku byly použity a pospojovány data:
+- czechia price
+- czechia price category
+- czechia payroll
+- czechia payroll industry branch
 
+Pro poslední otázku byla použita tabulka economies, ze které jsme využili informace GDP.
 
-# TABULKA 
-CREATE TABLE t_marketa_malek_project_SQL_primary_final AS
-
-```
-SELECT
-	cpc.name AS food_category,
-	cp.value AS food_price,
-	cpib.name AS industry,
-	cpay.value AS salary,
-	cp.category_code,
-	cpay.payroll_year,
-	cp.region_code
-FROM czechia_price cp 
-JOIN czechia_payroll cpay 
-	ON cpay.payroll_year = YEAR(cp.date_from)
-JOIN czechia_payroll_industry_branch cpib 
-	ON cpay.industry_branch_code = cpib.code 
-JOIN czechia_price_category cpc 
-	ON cp.category_code = cpc.code 
-WHERE cpay.value_type_code = 5958
-	AND cp.region_code IS NULL
-GROUP BY cpay.payroll_year, cp.category_code, cpay.industry_branch_code;
-```
 
 # **1. Rostou v průběhu let mzdy ve všech odvětvích, nebo v některých klesají?**
   
@@ -34,37 +18,6 @@ GROUP BY cpay.payroll_year, cp.category_code, cpay.industry_branch_code;
       - mzdy
       - odvětví
       
-```
-CREATE OR REPLACE VIEW v_first_question AS
-SELECT
-	t1.payroll_year,
-	t1.industry,
-	t1.salary,
-	t2.salary AS salary_previous,
-	t1.salary - t2.salary AS diference
-FROM (
-	SELECT 
-		payroll_year,
-		industry,
-		ROUND (AVG(salary),0) AS salary
-	FROM t_marketa_malek_project_sql_primary_final AS t1 
-	GROUP BY industry, payroll_year) AS t1 
-LEFT JOIN (SELECT 
-		payroll_year,
-		industry,
-		ROUND (AVG(salary),0) AS salary
-	FROM t_marketa_malek_project_sql_primary_final 
-	GROUP BY industry, payroll_year) AS t2
-	ON t1.payroll_year = t2.payroll_year + 1
-	AND t1.industry = t2.industry
-GROUP BY industry, payroll_year
-
-SELECT 
-	industry,
-	round(SUM(diference), 0) AS total_salary_growth
-FROM v_first_question AS v1
-GROUP BY industry;
-```
 
 **Odpověď:** 
 - Nejnižší nárůst byl v kategorii: Ubytování, stravování a pohostinství, a to 7 928 Kč. 
@@ -79,18 +32,6 @@ Co potřebuji vědět?
 	- mzdy
 	- cenu potraviny
 	- vypsané roky
-```
-SELECT
-	category_code,
-	food_category,
-	food_price,
-	payroll_year,
-	salary,
-	round (AVG(salary)/AVG(food_price),0) AS quantity
-FROM t_marketa_malek_project_sql_primary_final AS t1 
-WHERE category_code IN (114201, 111301) 
-GROUP BY category_code, payroll_year;
-```
 
 **Odpověď:**
 - V prvním měřitelném roce (2006) bylo možné zakoupit 1 112 ks chleba a 1 340 l mléka. 
@@ -103,30 +44,7 @@ Co potřebuji vědet?
 	- kategorie potravin
 	- cenu potravin
 	- meziroční nárůst v procentech
-```
-CREATE VIEW v_third_question AS 
-SELECT 
-	t1.category_code,
-	t1.food_category,
-	t1.payroll_year,
-	t1.food_price AS price2,
-	t2.food_price AS price1,
-	round(avg(t1.food_price),2) AS average_price,
-	round((t1.food_price - t2.food_price)/t2.food_price * 100,2) AS percent_growth
-FROM t_marketa_malek_project_sql_primary_final AS t1
-JOIN  t_marketa_malek_project_sql_primary_final AS t2
-	ON t1.payroll_year = t2.payroll_year + 1
-GROUP BY t1.category_code, t1.payroll_year
-;
 
-SELECT 
-	category_code,
-	food_category,
-	ROUND(AVG(percent_growth),0) AS average_percent_growth
-FROM v_third_question AS v1
-GROUP BY category_code
-ORDER BY average_percent_growth;
-```
 
 **Odpověď:**
 - V záporných hodnotách má nevyšší číslo ( - 77) jogurt bílý netučný. 
@@ -146,29 +64,6 @@ Co potřebuji vědět?
 	- meziroční nárůsty cen v procentech
 	- rozdíl mezi procentuálními růsty
 
-```
-CREATE VIEW v_fourth_question AS 
-SELECT
-	t1.payroll_year AS year1, 
-	t2.payroll_year, 
-	round (avg(t1.food_price),2) AS average_price, 
-	round (avg(t1.salary),2) AS average_salary,
-	round ((avg(t1.food_price) - avg(t2.food_price))/avg(t2.food_price)*100,2) AS price_grow,
-	round ((avg(t1.salary)-avg(t2.salary))/ avg(t2.salary)*100,2) AS salary_grow 
-FROM t_marketa_malek_project_sql_primary_final AS t1 
-JOIN t_marketa_malek_project_sql_primary_final AS t2 
-	ON t1.payroll_year = t2.payroll_year + 1 
-GROUP BY t1.payroll_year;
-
-SELECT 
-	payroll_year, 
-	price_grow,
-	salary_grow, 
-	salary_grow - price_grow AS difference 
-FROM v_fourth_question AS v1
-ORDER BY difference DESC
-```
-
 **Odpověď:**
 - Ano, v roce 2007 a 2008 byl rozdíl v nárustu cen a mezd nad 10%.
 	
@@ -177,30 +72,6 @@ ORDER BY difference DESC
 # **5. Má výška HDP vliv na změny ve mzdách a cenách potravin? Neboli, pokud HDP vzroste výrazněji v jednom roce, projeví se to na cenách potravin či mzdách ve stejném nebo násdujícím roce výraznějším růstem?**
 
 Zde jsem si napojila tabulku economies pro přidání dat s GDP. Napojení tabulky economies samu na sebe pro meziroční procentuální růst. Využila jsem vytvořeného view z předchozí otázky pro snadnější tvoření příkazu.
-
-```
-SELECT 
-	e.country,
-	e.`year`,
-	e2.`year`,
-	round(e.GDP,0) AS GDP,
-	round(e2.GDP,0) AS GDP2,
-	average_price,
-	average_salary,
-	round ((e.GDP - e2.GDP)/ e2.GDP * 100,2) AS GDP_grow,
-	price_grow,
-	salary_grow
-FROM economies e
-JOIN v_fourth_question AS v1
-	ON e.`year` = v1.payroll_year
-JOIN economies e2 
-	ON e.`year` = e2.`year`+1
-WHERE e.country = 'Czech republic'
-	AND e2.country = 'Czech republic'
-	AND e.`year` BETWEEN 2006 AND 2019
-	AND e2.`year` BETWEEN 2006 AND 2019
-GROUP BY e.`year`
-```
 
 **Odpověď:**
 - Na začátku sledovaného období měl GDP nárůst hodnotu 5.57. Mzdy měly hodnotu 10.48 a potraviny 0.28.
