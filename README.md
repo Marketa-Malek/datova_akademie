@@ -14,10 +14,10 @@ Pro poslední otázku byla použita tabulka economies, ze které jsme využili i
 # **1. Rostou v průběhu let mzdy ve všech odvětvích, nebo v některých klesají?**
   
    Co potřebuji vědět?
-      - roky
-      - mzdy
-      - odvětví
-      
+   - roky
+   - mzdy
+   - odvětví
+   - využila jsem vytvořeného view z předchozí otázky pro snadnější tvoření příkazu
 
 **Odpověď:** 
 - Nejnižší nárůst byl v kategorii: Ubytování, stravování a pohostinství, a to 7 928 Kč. 
@@ -28,10 +28,10 @@ Pro poslední otázku byla použita tabulka economies, ze které jsme využili i
 # **2. Kolik je možné si koupit litrů mléka a kilogramů chleba za první a poslední srovnatelné období v dostupných datech cen a mezd?**
 
 Co potřebuji vědět?
-	- category_code pro danou potravinu
-	- mzdy
-	- cenu potraviny
-	- vypsané roky
+- category_code pro danou potravinu
+- mzdy
+- cenu potraviny
+- vypsané roky
 
 **Odpověď:**
 - V prvním měřitelném roce (2006) bylo možné zakoupit 1 112 ks chleba a 1 340 l mléka. 
@@ -40,11 +40,11 @@ Co potřebuji vědět?
 # **3. Která kategorie potravin zdražuje nejpomaleji (je u ní nejnižší percentuální meziroční nárůst)?**
 
 Co potřebuji vědet?
-	- napojení tabulek pomocí payroll_year pro spočítání meziročního růstu
-	- kategorie potravin
-	- cenu potravin
-	- meziroční nárůst v procentech
-
+- napojení tabulek pomocí payroll_year pro spočítání meziročního růstu
+- kategorie potravin
+- cenu potravin
+- meziroční nárůst v procentech
+- využila jsem vytvořeného view z předchozí otázky pro snadnější tvoření příkazu
 
 **Odpověď:**
 - V záporných hodnotách má nevyšší číslo ( - 77) jogurt bílý netučný. 
@@ -60,9 +60,10 @@ Co potřebuji vědet?
 # **4. Existuje rok, ve kterém byl meziroční nárůst cen potravin výrazně vyšší, než růst mezd (větší než 10 %)?**
 
 Co potřebuji vědět?
-	- meziroční nárůsty mezd v procentech
-	- meziroční nárůsty cen v procentech
-	- rozdíl mezi procentuálními růsty
+- meziroční nárůsty mezd v procentech
+- meziroční nárůsty cen v procentech
+- rozdíl mezi procentuálními růsty
+- využila jsem vytvořeného view z předchozí otázky pro snadnější tvoření příkazu
 
 **Odpověď:**
 - Ano, v roce 2007 a 2008 byl rozdíl v nárustu cen a mezd nad 10%.
@@ -71,7 +72,9 @@ Co potřebuji vědět?
 
 # **5. Má výška HDP vliv na změny ve mzdách a cenách potravin? Neboli, pokud HDP vzroste výrazněji v jednom roce, projeví se to na cenách potravin či mzdách ve stejném nebo násdujícím roce výraznějším růstem?**
 
-Zde jsem si napojila tabulku economies pro přidání dat s GDP. Napojení tabulky economies samu na sebe pro meziroční procentuální růst. Využila jsem vytvořeného view z předchozí otázky pro snadnější tvoření příkazu.
+- zde jsem si napojila tabulku economies pro přidání dat s GDP
+- napojení tabulky economies samu na sebe pro meziroční procentuální růst 
+- využila jsem vytvořeného view z předchozí otázky pro snadnější tvoření příkazu
 
 **Odpověď:**
 - Na začátku sledovaného období měl GDP nárůst hodnotu 5.57. Mzdy měly hodnotu 10.48 a potraviny 0.28.
