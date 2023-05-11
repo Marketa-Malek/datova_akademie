@@ -1,6 +1,6 @@
 # SQL_projekt
 
-V tomto projektu se zabýváme otázkami růstu cen potravin a mezd. Pracujeme s daty z české republiky, které nám nabízí ceny potravin, jejich kategorie a množství. Data mzdová obsahují informace o mzdách a jednotlivých odvětví. Obě tabulky informace sbíraly v určitých časových obdobích.
+V tomto projektu se zabýváme otázkami růstu cen potravin a mezd. Pracujeme s daty z České republiky, které nám nabízí ceny potravin, jejich kategorie a množství. Data mzdová obsahují informace o mzdách a jednotlivých odvětví. Obě tabulky informace sbíraly v určitých časových obdobích.
 
 Jako první bylo nutné vytvořit novou tabulku, která obsahuje pouze ty data, která opravdu potřebujeme. Zárověň jsme využili omezující podmínky, jako např. value type code, či hodnoty kterou jsou NULL. Pro finální tabulku byly použity a pospojovány data:
 - czechia price
