@@ -53,7 +53,7 @@ Co potřebuji vědet?
 - V plusových hodnotách do 50% máme pomeranče, rýži, těstoviny s rajčaty a pečivo pšeničné bílé. 
 - Nad 50% a do 100% růstu jsou papriky a kuřecí maso. 
 - Nad 100% se nachází bílé víno, kapr živý a rostlinný tuk. 
-- Nad 200% je to vepřová pečeně, šunkový salám, eidam sýr, máslo a s nejvyšším nárůstem 497% hovězí maso zadní bez kosti.**
+- Nad 200% je to vepřová pečeně, šunkový salám, eidam sýr, máslo a s nejvyšším nárůstem 497% hovězí maso zadní bez kosti.
 
 
 
@@ -81,5 +81,5 @@ Co potřebuji vědět?
 - Následující rok GDP kleslo a s ním i mzdy. Do mínusových hodnot šly cen potravin. 
 - Hodnota GDP klesla v roce 2009. Ceny vzrostly zatímco mzdy zůstaly na podobné hodnotě.
 - Od roku 2013 do 2015 GDP výrazně vzrostlo ( z -0.05 na 5.39). Zareagovaly ceny potravin, ale více mzdy a to výrazným nárůstem (na 7,33). 
-- nárůst cen potravin se projevil až v následujícím roce s hodnotou 8.44
-- na konci sledovaného období mělo GDP hodnotu 5.17 -- ceny klesly do mínusu a mzdy se snížily na 5.08
+- Nárůst cen potravin se projevil až v následujícím roce s hodnotou 8.44
+- Na konci sledovaného období mělo GDP hodnotu 5.17 -- ceny klesly do mínusu a mzdy se snížily na 5.08
