@@ -17,7 +17,7 @@ Pro poslední otázku byla použita tabulka economies, ze které jsme využili i
    - roky
    - mzdy
    - odvětví
-   - využila jsem vytvořeného view z předchozí otázky pro snadnější tvoření příkazu
+   - vytvořila jsem view pro snadnější tvoření finálního příkazu
 
 **Odpověď:** 
 - Nejnižší nárůst byl v kategorii: Ubytování, stravování a pohostinství, a to 7 928 Kč. 
@@ -44,7 +44,7 @@ Co potřebuji vědet?
 - kategorie potravin
 - cenu potravin
 - meziroční nárůst v procentech
-- využila jsem vytvořeného view z předchozí otázky pro snadnější tvoření příkazu
+- vytvořila jsem view pro snadnější tvoření finálního příkazu
 
 **Odpověď:**
 - V záporných hodnotách má nevyšší číslo ( - 77) jogurt bílý netučný. 
@@ -63,7 +63,7 @@ Co potřebuji vědět?
 - meziroční nárůsty mezd v procentech
 - meziroční nárůsty cen v procentech
 - rozdíl mezi procentuálními růsty
-- využila jsem vytvořeného view z předchozí otázky pro snadnější tvoření příkazu
+- vytvořila jsem view pro snadnější tvoření finálního příkazu
 
 **Odpověď:**
 - Ano, v roce 2007 a 2008 byl rozdíl v nárustu cen a mezd nad 10%.
