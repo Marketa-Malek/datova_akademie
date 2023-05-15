@@ -11,13 +11,13 @@ FROM (
 	SELECT 
 		payroll_year,
 		industry,
-		ROUND (AVG(salary),0) AS salary
+		ROUND(AVG(salary),0) AS salary
 	FROM t_marketa_malek_project_sql_primary_final AS t1 
 	GROUP BY industry, payroll_year) AS t1 
 LEFT JOIN (SELECT 
 		payroll_year,
 		industry,
-		ROUND (AVG(salary),0) AS salary
+		ROUND(AVG(salary),0) AS salary
 	FROM t_marketa_malek_project_sql_primary_final 
 	GROUP BY industry, payroll_year) AS t2
 	ON t1.payroll_year = t2.payroll_year + 1
@@ -38,14 +38,15 @@ SELECT
 	food_price,
 	payroll_year,
 	salary,
-	round (AVG(salary)/AVG(food_price),0) AS quantity
+	round(AVG(salary)/AVG(food_price),0) AS quantity
 FROM t_marketa_malek_project_sql_primary_final AS t1 
-WHERE category_code IN (114201, 111301) 
+WHERE category_code IN (114201, 111301)
+	AND payroll_year IN (2006, 2018)
 GROUP BY category_code, payroll_year;
 
 --- 3. otázka ---
 
-CREATE VIEW v_third_question AS 
+CREATE VIEW v_third_question AS;
 SELECT 
 	t1.category_code,
 	t1.food_category,
@@ -57,27 +58,28 @@ SELECT
 FROM t_marketa_malek_project_sql_primary_final AS t1
 JOIN  t_marketa_malek_project_sql_primary_final AS t2
 	ON t1.payroll_year = t2.payroll_year + 1
+	AND t1.food_category = t2.food_category
 GROUP BY t1.category_code, t1.payroll_year
 ;
 
 SELECT 
 	category_code,
 	food_category,
-	ROUND(AVG(percent_growth),0) AS average_percent_growth
+	ROUND(AVG(percent_growth),2) AS average_percent_growth
 FROM v_third_question AS v1
 GROUP BY category_code
-ORDER BY average_percent_growth;
+ORDER BY average_percent_growth
 
 --- 4. otázka ---
 
-CREATE VIEW v_fourth_question AS 
+CREATE VIEW v_fourth_question AS; 
 SELECT 
 	t1.payroll_year AS year1, 
 	t2.payroll_year, 
-	round (avg(t1.food_price),2) AS average_price, 
-	round (avg(t1.salary),2) AS average_salary,
-	round ((avg(t1.food_price) - avg(t2.food_price))/avg(t2.food_price)*100,2) AS price_grow,
-	round ((avg(t1.salary)-avg(t2.salary))/ avg(t2.salary)*100,2) AS salary_grow 
+	round(avg(t1.food_price),2) AS average_price, 
+	round(avg(t1.salary),2) AS average_salary,
+	round((avg(t1.food_price) - avg(t2.food_price))/avg(t2.food_price)*100,2) AS price_grow,
+	round((avg(t1.salary)-avg(t2.salary))/ avg(t2.salary)*100,2) AS salary_grow 
 FROM t_marketa_malek_project_sql_primary_final AS t1 
 JOIN t_marketa_malek_project_sql_primary_final AS t2 
 	ON t1.payroll_year = t2.payroll_year + 1 
@@ -101,7 +103,7 @@ SELECT
 	round(e2.GDP,0) AS GDP2,
 	average_price,
 	average_salary,
-	round ((e.GDP - e2.GDP)/ e2.GDP * 100,2) AS GDP_grow,
+	round((e.GDP - e2.GDP)/ e2.GDP * 100,2) AS GDP_grow,
 	price_grow,
 	salary_grow
 FROM economies e
