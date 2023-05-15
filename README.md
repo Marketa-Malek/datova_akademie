@@ -36,7 +36,6 @@ Co potřebuji vědět?
 **Odpověď:**
 - V prvním měřitelném roce (2006) bylo možné zakoupit 1 112 ks chleba a 1 340 l mléka. 
 - Na konci měřitelného období (2018) bylo možné zakoupit  1 273 ks chleba a 1 551 l mléka, tzn. že bylo možné zakoupit cca 200 jednotek více, než v roce 2006.
-- 
 
 # **3. Která kategorie potravin zdražuje nejpomaleji (je u ní nejnižší percentuální meziroční nárůst)?**
 
