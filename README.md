@@ -35,7 +35,8 @@ Co potřebuji vědět?
 
 **Odpověď:**
 - V prvním měřitelném roce (2006) bylo možné zakoupit 1 112 ks chleba a 1 340 l mléka. 
-- Na konci měřitelného období bylo možné zakoupit  1 273 ks chleba a 1 551 l mléka.
+- Na konci měřitelného období (2018) bylo možné zakoupit  1 273 ks chleba a 1 551 l mléka, tzn. že bylo možné zakoupit cca 200 jednotek více, než v roce 2006.
+- 
 
 # **3. Která kategorie potravin zdražuje nejpomaleji (je u ní nejnižší percentuální meziroční nárůst)?**
 
@@ -47,15 +48,7 @@ Co potřebuji vědet?
 - vytvořila jsem view pro snadnější tvoření finálního příkazu
 
 **Odpověď:**
-- V záporných hodnotách má nevyšší číslo ( - 77) jogurt bílý netučný. 
-- Nad -50% se nachází také minerální voda, pivo, mouka hladká pšeničná a mrkev. 
-- Do -50% zde máme mléko, cukr krystal. chléb, banány, vejce slepičí a jablka. 
-- V plusových hodnotách do 50% máme pomeranče, rýži, těstoviny s rajčaty a pečivo pšeničné bílé. 
-- Nad 50% a do 100% růstu jsou papriky a kuřecí maso. 
-- Nad 100% se nachází bílé víno, kapr živý a rostlinný tuk. 
-- Nad 200% je to vepřová pečeně, šunkový salám, eidam sýr, máslo a s nejvyšším nárůstem 497% hovězí maso zadní bez kosti.
-
-
+- Nejnižší procentuální růst s výsledkem "-0,26" je pro Cukr krystal. 
 
 # **4. Existuje rok, ve kterém byl meziroční nárůst cen potravin výrazně vyšší, než růst mezd (větší než 10 %)?**
 
