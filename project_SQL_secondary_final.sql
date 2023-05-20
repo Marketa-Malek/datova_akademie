@@ -1,4 +1,4 @@
-Spojení tabulek economie a countries přes country. Dále vyselektování zemí EU přes kontinent.
+--- Spojení tabulek economie a countries přes country. Dále vyselektování zemí EU přes kontinent. ---
 
 
 CREATE TABLE t_marketa_malek_project_SQL_secondary_final
